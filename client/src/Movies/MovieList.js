@@ -17,7 +17,7 @@ const MovieList = props => {
   return (
     <div className="movie-list">
       {movies.map(movie => (
-        <MovieDetails key={movie.id} movie={movie} />
+        <MovieDetails key={movies.id} movie={movie} />
       ))}
     </div>
   );
