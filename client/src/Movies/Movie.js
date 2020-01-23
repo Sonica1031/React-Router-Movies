@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import MovieCard from './MovieCard'
 import axios from 'axios';
 
 const Movie = (props) => {
@@ -19,7 +20,7 @@ const Movie = (props) => {
           console.error(error.response);
         });
 
-  },[]);
+  },[props.match.params.id]);
   
   // Uncomment this only when you have moved on to the stretch goals
   // const saveMovie = () => {
@@ -33,28 +34,27 @@ const Movie = (props) => {
 
   const { title, director, metascore, stars } = movie;
   return (
-
-    <Link exact to={`/Movie/${movie.id}`}>
+    
     <div className="save-wrapper">
-      <div className="movie-card">
-        <h2>{title}</h2>
-        <div className="movie-director">
-          Director: <em>{director}</em>
-        </div>
-        <div className="movie-metascore">
-          Metascore: <strong>{metascore}</strong>
-        </div>
-        <h3>Actors</h3>
-
-        {stars.map(star => (
-          <div key={star} className="movie-star">
-            {star}
-          </div>
-        ))}
+    <div className="movie-card">
+      <h2>{title}</h2>
+      <div className="movie-director">
+        Director: <em>{director}</em>
       </div>
-      <div className="save-button">Save</div>        
+      <div className="movie-metascore">
+        Metascore: <strong>{metascore}</strong>
+      </div>
+      <h3>Actors</h3>
+
+      {stars.map(star => (
+        <div key={star} className="movie-star">
+          {star}
+        </div>
+      ))}
     </div>
-    </Link>  
+    <div className="save-button">Save</div>        
+  </div>
+    
   );
 }
 
